@@ -67,7 +67,7 @@ pipeline {
 				shouldPublish = input message: 'Publish Containers?', parameters: [[$class: 'ChoiceParameterDefinition', choices: 'yes\nno', description: '', name: 'Deploy']]
 			    if(shouldPublish == "yes") {
 				     echo "Publishing docker containers"
-				     sh "\$(aws ecr-public get-login-password --region us-east-1)"
+				     sh "\$(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r6g0d5x4)"
 				
 				     sh "docker tag config-server:latest public.ecr.aws/r6g0d5x4/config-server:latest"
 				     sh "docker push 527222548725.dkr.ecr.us-west-2.amazonaws.com/config-service:latest"
