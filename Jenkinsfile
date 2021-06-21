@@ -60,7 +60,7 @@ pipeline {
 
 			}
 		}
-
+//527222548725.dkr.ecr.us-east-2.amazonaws.com
 		stage('Push Docker Image') {
 			steps {
 				script {
@@ -72,10 +72,10 @@ pipeline {
 //						dockerImage.push();
 //						dockerImage.push('latest');
 //					}
-//					docker.withRegistry('', 'dockerhub') {
-//						dockerImage.push();
-//						dockerImage.push('latest');
-//					}
+					docker.withRegistry('https://527222548725.dkr.ecr.us-east-2.amazonaws.com', 'ecr:config-server:my.aws.credentials') {
+						dockerImage.push();
+						dockerImage.push('latest');
+					}
 				}
 			}
 		}
