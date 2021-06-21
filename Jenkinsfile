@@ -62,7 +62,6 @@ pipeline {
 			}
 		}
 
-
 		stage('Push Docker Image') {
 			steps {
 				script {
