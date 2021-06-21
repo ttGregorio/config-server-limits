@@ -64,6 +64,19 @@ pipeline {
 		stage('Push Docker Image') {
 			steps {
 				script {
+				shouldPublish = input message: 'Publish Containers?', parameters: [[$class: 'ChoiceParameterDefinition', choices: 'yes\nno', description: '', name: 'Deploy']]
+			    if(shouldPublish == "yes") {
+			     echo "Publishing docker containers"
+			     sh "\$(aws ecr get-login)"
+			
+			     sh "docker tag config-server:latest public.ecr.aws/r6g0d5x4/config-server:latest"
+			     sh "docker push 527222548725.dkr.ecr.us-west-2.amazonaws.com/config-service:latest"
+			    
+			    
+				
+				
+				
+				
 //					sh "docker tag config-server:${env.BUILD_TAG} public.ecr.aws/r6g0d5x4/config-server:${env.BUILD_TAG}"
 //					sh "docker push 527222548725.dkr.ecr.us-west-2.amazonaws.com/config-service:${env.BUILD_TAG}"
 					sh "docker tag config-server:latest public.ecr.aws/r6g0d5x4/config-server:latest"
@@ -72,10 +85,6 @@ pipeline {
 //						dockerImage.push();
 //						dockerImage.push('latest');
 //					}
-					docker.withRegistry('https://527222548725.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:AKIAXVQHJVD2SCUOJVKL') {
-						dockerImage.push();
-//						dockerImage.push('latest');
-					}
 				}
 			}
 		}
