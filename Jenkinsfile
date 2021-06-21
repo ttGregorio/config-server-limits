@@ -53,7 +53,8 @@ pipeline {
 			steps {
 				//"docker build -t config-service:$env.BUILD_TAG"
 				script {
-				sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r6g0d5x4";
+				$(aws ecr login)
+//				sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r6g0d5x4";
 				//	dockerImage = docker.build("config-service:${env.BUILD_TAG}")
 				sh "docker build -t config-server .";
 				}
