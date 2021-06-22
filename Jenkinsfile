@@ -68,8 +68,11 @@ pipeline {
 				script {
 //					sh "docker tag config-server:${env.BUILD_TAG} public.ecr.aws/r6g0d5x4/config-server:${env.BUILD_TAG}"
 //					sh "docker push 527222548725.dkr.ecr.us-west-2.amazonaws.com/config-service:${env.BUILD_TAG}"
-					sh 'docker login --username AWS --password $(aws ecr get-login-password --region us-west-2) 527222548725.dkr.ecr.us-west-2.amazonaws.com'
+
+//					sh 'docker login --username AWS --password $(aws ecr get-login-password --region us-west-2) 527222548725.dkr.ecr.us-west-2.amazonaws.com'
 //					sh ' aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r6g0d5x4';
+					sh ' docker login --username AWS --password-stdin public.ecr.aws/r6g0d5x4';
+
 					sh "docker tag config-server:latest public.ecr.aws/r6g0d5x4/config-server:latest"
 					sh "docker push 527222548725.dkr.ecr.us-west-2.amazonaws.com/config-service:latest"
 //					docker.withRegistry('', 'dockerhub') {
