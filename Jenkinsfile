@@ -9,7 +9,7 @@ pipeline {
 		dockerHome = tool 'myDocker'
 		mavenHome = tool 'myMaven'
 		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
-		registry= "527222548725.dkr.ecr.us-east-2.amazonaws.com/config-server:$env.BUILD_TAG""
+		registry= "527222548725.dkr.ecr.us-east-2.amazonaws.com/config-server:$env.BUILD_TAG"
 	}
 
 	stages {
