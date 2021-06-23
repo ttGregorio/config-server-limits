@@ -79,7 +79,7 @@ pipeline {
 //						dockerImage.push('latest');
 //					}
 
-					docker.withRegistry('https://527222548725.dkr.ecr.us-east-2.amazonaws.com', 'aws_credentials') {
+					docker.withRegistry('https://527222548725.dkr.ecr.us-east-2.amazonaws.com', 'ecr:eu-central-1:aws_credentials') {
 						dockerImage.push();
 						dockerImage.push('latest');
 					}
