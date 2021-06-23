@@ -10,6 +10,8 @@ pipeline {
 		mavenHome = tool 'myMaven'
 		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
 		registry= "527222548725.dkr.ecr.us-east-2.amazonaws.com/config-server"
+		registryCredential = 'AKIAXVQHJVD2SCUOJVKL'
+    
 	}
 
 	stages {
@@ -78,6 +80,10 @@ pipeline {
 //						dockerImage.push();
 //						dockerImage.push('latest');
 //					}
+					docker.withRegistry("https://" + registry, "ecr:eu-central-1:" + registryCredential) {
+	                    dockerImage.push();
+						dockerImage.push('latest');
+	                }
 				}
 			}
 		}
